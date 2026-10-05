@@ -408,29 +408,35 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
-
 def main():
+    import os
+
     parser = argparse.ArgumentParser(
         description="Dashboard de PLs sobre cannabis"
     )
-    parser.add_argument("--porta", type=int, default=8050)
+    parser.add_argument(
+        "--porta",
+        type=int,
+        default=int(os.environ.get("PORT", "8050")),
+    )
     parser.add_argument("--sem-navegador", action="store_true")
     args = parser.parse_args()
 
+    no_render = os.environ.get("RENDER") == "true"
+    host = "0.0.0.0" 
+
     try:
         server = ThreadingHTTPServer(
-            ("127.0.0.1", args.porta),
+            (host, args.porta),
             Handler,
         )
     except OSError as erro:
         parser.exit(1, f"Não foi possível iniciar: {erro}\n")
 
-    url = f"http://127.0.0.1:{args.porta}"
-    print(f"Dashboard: {url}")
-    print("Fonte configurada:", DATA_SOURCE)
-    print("Para encerrar, pressione Ctrl+C.")
+    print(f"Servidor iniciado em {host}:{args.porta}", flush=True)
 
-    if not args.sem_navegador:
+    if not no_render and not args.sem_navegador:
+        url = f"http://127.0.0.1:{args.porta}"
         threading.Timer(
             0.7,
             lambda: webbrowser.open(url),
