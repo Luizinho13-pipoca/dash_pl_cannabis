@@ -307,38 +307,32 @@ def ler_conteudo(conteudo):
 
 
 def carregar_dados():
-    link = DATA_SOURCE.strip()
+    fonte = DATA_SOURCE.strip()
 
-    if not link or link == "inserir link da planilha":
-        raise ValueError(
-            'Configure DATA_SOURCE no app.py: substitua '
-            '"inserir link da planilha" pelo link da sua base.'
-        )
+    if not fonte:
+        raise ValueError("Configure DATA_SOURCE com o nome da planilha.")
 
-        if urlparse(link).scheme not in ("https", "http"):
-            arquivo = PASTA_APP / link
+    # Arquivo local incluído no repositório.
+    if not fonte.startswith(("https://", "http://")):
+        arquivo = Path(__file__).resolve().parent / fonte
 
-            if not arquivo.is_file():
-                raise ValueError(
-                    f"Planilha não encontrada: {arquivo.name}. "
-                    "Confira se ela foi enviada ao GitHub."
-                )
+        if not arquivo.is_file():
+            raise ValueError(
+                f"Planilha não encontrada: {arquivo.name}. "
+                "Ela deve estar na mesma pasta do código, "
+                "com o nome exatamente igual ao DATA_SOURCE."
+            )
 
-            return ler_conteudo(arquivo.read_bytes())
+        return ler_conteudo(arquivo.read_bytes())
 
+    # Planilha online, caso você volte a usar um link.
     requisicao = Request(
-        converter_link(link),
+        converter_link(fonte),
         headers={"User-Agent": "Mozilla/5.0"},
     )
 
-    try:
-        with urlopen(requisicao, timeout=60) as resposta:
-            conteudo = resposta.read()
-    except Exception as erro:
-        raise ValueError(
-            "Não foi possível acessar a planilha online. "
-            "Confira o link, a conexão e a permissão de leitura."
-        ) from erro
+    with urlopen(requisicao, timeout=60) as resposta:
+        conteudo = resposta.read()
 
     return ler_conteudo(conteudo)
 
