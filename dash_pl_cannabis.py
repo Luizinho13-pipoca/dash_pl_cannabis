@@ -212,10 +212,19 @@ def transformar_registros(cabecalhos, linhas):
         if not any(v is not None and str(v).strip() for v in linha):
             continue
 
-        if len(linha) > len(cabecalhos):
-            raise ValueError(
-                f"A linha {numero} tem mais valores que o cabeçalho."
-            )
+            if len(linha) > len(cabecalhos):
+                extras = linha[len(cabecalhos):]
+
+                if any(
+                    valor is not None and str(valor).strip()
+                    for valor in extras
+                ):
+                    raise ValueError(
+                        f"A linha {numero} contém dados em colunas "
+                        "sem cabeçalho. Confira essa linha na planilha."
+                    )
+
+                linha = linha[:len(cabecalhos)]
 
         registro = {}
 
