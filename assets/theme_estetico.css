@@ -1,0 +1,404 @@
+:root {
+  --bg: #F7F7FA;
+  --surface: #FFFFFF;
+  --map-bg: #F8FAFC;
+  --primary: #5b0058;
+  --primary-hover: #7A1975;
+  --primary-soft: #E7CFE5;
+  --text: #1F2937;
+  --muted: #6B7280;
+  --label: #4B5563;
+  --border: #E5E7EB;
+  --shadow: 0 10px 24px rgba(31, 41, 55, 0.06);
+  --shadow-soft: 0 1px 2px rgba(31, 41, 55, 0.04);
+  --radius: 16px;
+  --font: "Nunito", "Poppins", Inter, "Segoe UI", Arial, sans-serif;
+  --header-bg: var(--primary);
+  --header-bg-deep: #460044;
+  --header-text: #FFFFFF;
+  --header-muted: rgba(255, 255, 255, 0.82);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+#_dash-app-content {
+  background: var(--bg);
+}
+
+.app-header {
+  padding: 22px 28px 24px;
+  color: var(--header-text);
+  background: linear-gradient(135deg, var(--header-bg) 0%, var(--header-bg-deep) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 30px rgba(70, 0, 68, 0.18);
+}
+
+.app-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.brand-text {
+  display: flex;
+  flex: 1 1 360px;
+  min-width: 260px;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.brand-title {
+  margin: 0;
+  color: var(--header-text);
+  font-size: clamp(24px, 2.2vw, 34px);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.12;
+}
+
+.brand-subtitle {
+  margin: 0;
+  color: var(--header-muted);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.brand-logos {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex: 1 1 520px;
+  flex-wrap: wrap;
+}
+
+.brand-logo {
+  display: block;
+  height: 56px;
+  max-width: 196px;
+  object-fit: contain;
+  padding: 7px 11px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(31, 0, 31, 0.16);
+}
+
+.fiocruz-logo {
+  height: 54px;
+  max-width: 246px;
+}
+
+.psicocult-logo {
+  height: 62px;
+  max-width: 156px;
+}
+
+.inct-logo {
+  height: 50px;
+  max-width: 160px;
+}
+
+h4,
+h5 {
+  color: var(--primary);
+  letter-spacing: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--label);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 18px 0;
+}
+
+button,
+#btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 14px;
+  color: #FFFFFF;
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(91, 0, 88, 0.16);
+  font-family: var(--font);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover,
+#btn-download:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.chart-panel,
+.map-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.chart-panel {
+  padding: 8px;
+}
+
+.map-panel {
+  background: var(--map-bg) !important;
+  display: block;
+  min-height: 540px;
+  overflow: visible;
+}
+
+.map-panel .dash-graph,
+.map-panel .js-plotly-plot,
+.map-panel .plot-container,
+.map-panel .svg-container {
+  display: block !important;
+  width: 100% !important;
+  min-height: 520px;
+}
+
+#mapa-info {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#kpis > div {
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+#kpis > div:hover {
+  box-shadow: 0 14px 28px rgba(31, 41, 55, 0.08) !important;
+  transform: translateY(-1px);
+}
+
+#kpis h3 {
+  margin: 8px 0 0;
+  color: var(--primary);
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+#kpis > div > div:first-child {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 1 !important;
+}
+
+.tab {
+  padding: 13px 18px !important;
+  color: var(--muted) !important;
+  background: #F9FAFB !important;
+  border: 0 !important;
+  border-bottom: 2px solid var(--border) !important;
+  font-family: var(--font);
+  font-weight: 700;
+}
+
+.tab:hover {
+  color: var(--primary) !important;
+  background: #FFFFFF !important;
+}
+
+.tab--selected {
+  color: var(--primary) !important;
+  background: #FFFFFF !important;
+  border-bottom: 3px solid var(--primary) !important;
+}
+
+.tab-content,
+.dashboard-tab-content {
+  display: block;
+  padding-top: 12px;
+  background: transparent;
+  overflow: visible;
+}
+
+.dashboard-tabs,
+.dashboard-tabs-list {
+  display: block;
+  width: 100%;
+}
+
+.map-tab-content {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.Select-control,
+.Select-menu-outer {
+  border-color: var(--border) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--shadow-soft) !important;
+  font-family: var(--font);
+}
+
+.Select-control {
+  min-height: 38px;
+  background: #FFFFFF !important;
+}
+
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
+  color: var(--muted) !important;
+  line-height: 38px !important;
+}
+
+.Select-input {
+  height: 38px !important;
+}
+
+.Select-input > input {
+  font-family: var(--font) !important;
+}
+
+.Select--multi .Select-value {
+  background-color: #F4E7F3 !important;
+  border-color: var(--primary-soft) !important;
+  border-radius: 8px !important;
+  color: var(--primary) !important;
+}
+
+.Select--multi .Select-value-label {
+  color: var(--primary) !important;
+  font-weight: 700;
+}
+
+.VirtualizedSelectFocusedOption,
+.VirtualizedSelectOption:hover {
+  background: #F8EEF7 !important;
+}
+
+input#f-busca-nome::placeholder {
+  color: #9CA3AF;
+}
+
+input#f-busca-nome:focus {
+  border-color: var(--primary-soft) !important;
+  box-shadow: 0 0 0 3px rgba(91, 0, 88, 0.10) !important;
+  outline: none;
+}
+
+.dash-table-container {
+  overflow: visible;
+  background: var(--surface);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+}
+
+.dash-table-container .dash-spreadsheet-container {
+  border-radius: 14px;
+  overflow: visible;
+}
+
+.dash-table-container .dash-spreadsheet {
+  overflow: visible;
+}
+
+.association-list-panel {
+  display: block;
+  margin-top: 10px;
+  overflow: visible;
+}
+
+.dash-table-container a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.dash-table-container a:hover {
+  color: var(--primary-hover);
+}
+
+.dash-table-container .previous-next-container button,
+.dash-table-container .page-number {
+  box-shadow: none;
+}
+
+a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+@media (max-width: 1200px) {
+  .brand-logos {
+    justify-content: flex-start;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-header {
+    padding: 14px 16px;
+  }
+
+  .brand-text,
+  .brand-logos {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .brand-logo {
+    height: 46px;
+    max-width: 164px;
+  }
+
+  .fiocruz-logo {
+    height: 44px;
+    max-width: 198px;
+  }
+
+  .psicocult-logo {
+    height: 50px;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-title {
+    font-size: 24px;
+  }
+
+  .brand-logo {
+    height: 39px;
+    max-width: 142px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

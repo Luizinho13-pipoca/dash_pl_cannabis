@@ -1,0 +1,36 @@
+DASHBOARD LEGISLATIVO SOBRE CANNABIS
+Requer Python 3.10 ou superior.
+
+1. Extraia o ZIP em uma pasta do computador.
+2. Abra o PowerShell nessa pasta e execute:
+
+   py -m venv .venv
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   .\.venv\Scripts\python.exe app.py
+
+3. O navegador abrirá http://127.0.0.1:8050
+   Se ele não abrir, digite esse endereço no navegador.
+4. Deixe o terminal aberto enquanto usa o dashboard.
+   Para parar, pressione Ctrl+C.
+
+ATUALIZAÇÃO DA BASE
+Edite e salve a planilha incluída, mantendo os nomes das colunas.
+Depois, recarregue a página no navegador. Não é necessário reiniciar.
+Só entram na lista linhas com o número do projeto de lei preenchido.
+RN e MS possuem notas de indisponibilidade de consulta na base original.
+O mapa mostra a contagem dos registros no recorte selecionado.
+As situações não são atualizadas automaticamente a partir dos sites oficiais.
+
+Se retirar a planilha da pasta, o programa usará a cópia dos 139 PLs
+incluída no código. Para usar outra planilha:
+   .\.venv\Scripts\python.exe app.py --planilha "C:\pasta\base.xlsx"
+
+Se a porta estiver ocupada:
+   .\.venv\Scripts\python.exe app.py --porta 8051
+
+O mapa e a interface funcionam sem internet. Apenas os links de fontes
+exigem internet. O servidor é acessível somente no próprio computador.
+
+LIMITES ESTADUAIS
+Click That 'Hood / Code for Germany:
+https://github.com/codeforgermany/click_that_hood/blob/main/public/data/brazil-states.geojson
