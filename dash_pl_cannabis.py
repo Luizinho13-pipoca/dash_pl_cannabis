@@ -315,10 +315,16 @@ def carregar_dados():
             '"inserir link da planilha" pelo link da sua base.'
         )
 
-    if urlparse(link).scheme not in ("https", "http"):
-        raise ValueError(
-            "DATA_SOURCE deve conter um link HTTP ou HTTPS."
-        )
+        if urlparse(link).scheme not in ("https", "http"):
+            arquivo = PASTA_APP / link
+
+            if not arquivo.is_file():
+                raise ValueError(
+                    f"Planilha não encontrada: {arquivo.name}. "
+                    "Confira se ela foi enviada ao GitHub."
+                )
+
+            return ler_conteudo(arquivo.read_bytes())
 
     requisicao = Request(
         converter_link(link),
